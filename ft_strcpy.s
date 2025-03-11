@@ -18,6 +18,6 @@ ft_strcpy:                  ; rdi - dest, rsi - src
     mov rax, rcx
     ret
 
-.null_case
+.null_case:
     xor rax, rax
     ret

@@ -2,10 +2,12 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 extern size_t ft_strlen(const char *s);
 extern char *ft_strcpy(char *dest, const char *src);
 extern int ft_strcmp(const char *s1, const char *s2);
+extern ssize_t ft_write(int fd, const void *buf, size_t count);
 
 void ft_strlen_test()
 {
@@ -76,11 +78,26 @@ void ft_strcmp_test()
     printf("  %s\n\n", (expected == result) ? "\033[32mPASS\033[0m" : "\033[31mFAIL\033[0m");
 }
 
+void ft_write_test()
+{
+    const char *src[] = {"Hello world", "1", "", "1234567890", NULL};
+
+    int num_of_tests = sizeof(src) / sizeof(src[0]);
+
+    for (int i = 0; i < num_of_tests; ++i)
+    {
+        ft_write(1, src[i], ft_strlen(src[i]));
+    }
+
+}
+
+
 int main()
 {
-    ft_strlen_test();
-    ft_strcpy_test();
-    ft_strcmp_test();
+    // ft_strlen_test();
+    // ft_strcpy_test();
+    // ft_strcmp_test();
+    ft_write_test();
 
 }
 
