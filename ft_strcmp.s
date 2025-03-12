@@ -8,7 +8,7 @@ ft_strcmp:                      ; rdi - s1, rsi - s2
     test rsi, rsi
     jz .done
 
-.loop
+.loop:
     movzx eax, byte [rdi]       ; Load byte from s1 and zero extend it
     movzx edx, byte [rsi]       ; Load byte from s2 and zero extend it
     cmp al, dl
@@ -19,7 +19,7 @@ ft_strcmp:                      ; rdi - s1, rsi - s2
     inc rsi
     jmp .loop
 
-.diff
+.diff:
     sub eax, edx
     ret
 
