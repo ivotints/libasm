@@ -2,11 +2,12 @@ section .text
 global ft_write
 extern __errno_location
 
-                	                    ; ssize_t ft_write(int fd, const void *buf, size_t count);
+                                        ; ssize_t ft_write(int fd, const void *buf, size_t count);
 ft_write:                   
-    mov rax, 1                          ; set rax to 1 what means syscall 1 - write. (better do it with xor, inc)
+    xor rax, rax
+    inc rax                             ; set rax to 1 what means syscall 1 - write
                                         ; in rdi we already have fd
-                                        ; in rsi we already have buf
+                                        ; in rsi we already have buf    
                                         ; in rdx we already have message len
     syscall                             ; invoke system call 1 - write
     test rax, rax                       ; if return value was negative - error: SF (sign flag) is set
