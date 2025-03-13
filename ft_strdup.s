@@ -5,8 +5,7 @@ extern __errno_location
 extern ft_strlen
 extern ft_strcpy
 
-
-ft_strdup:              ;  char *strdup(const char *s);
+ft_strdup:              ; char *strdup(const char *s);
     test rdi, rdi
     jz .bad_address
 
@@ -33,7 +32,7 @@ ft_strdup:              ;  char *strdup(const char *s);
 
 .malloc_fail:
     call __errno_location wrt ..plt
-    mov dword [rax], 12
+    mov qword [rax], 12
     pop rbx
     xor eax, eax
     ret
