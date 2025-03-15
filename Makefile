@@ -24,15 +24,10 @@ fclean: clean
 	rm -f $(NAME)
 	rm -f a.out
 
-bonus: 
-
 test: $(NAME) main.c
 	$(CC) $(CFLAGS) main.c $(NAME)
 	./a.out
 
 re: fclean all
 
-.PHONY: all clean fclean bonus test re
-
-# no relinling, 
-# bonus in different file *_bonus.c/h
+.PHONY: all clean fclean test re

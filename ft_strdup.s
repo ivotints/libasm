@@ -11,27 +11,39 @@ ft_strdup:              ; char *strdup(const char *s);
 
     push rbx
     mov rbx, rdi        ; safe pointer in rdx
+    sub rsp, 8          
     call ft_strlen      ; it will return length of the string.
+    add rsp, 8
     inc rax             ; add 1 for null-terminator
-    mov rdi, rax        ; send sixe in rdi -> malloc will get it as a first argument
+    mov rdi, rax        ; send size in rdi -> malloc will get it as a first argument
+    
+    sub rsp, 8
     call malloc wrt ..plt 
+    add rsp, 8
+
     test rax, rax
     jz .malloc_fail
 
     mov rdi, rax 
     mov rsi, rbx
+    sub rsp, 8          
     call ft_strcpy
+    add rsp, 8
     pop rbx
     ret
 
 .bad_address:
+    sub rsp, 8          
     call __errno_location wrt ..plt
+    add rsp, 8
     mov qword [rax], 14            ; errno code of bad address. Not standard behavor, but better then original one in my opinion
     xor rax, rax
     ret 
 
 .malloc_fail:
+    sub rsp, 8          
     call __errno_location wrt ..plt
+    add rsp, 8
     mov qword [rax], 12
     pop rbx
     xor eax, eax

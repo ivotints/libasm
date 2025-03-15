@@ -115,6 +115,20 @@ void ft_write_test()
     printf("  write:    result=%d, errno=%d (%s)\n", sys_result, sys_errno, strerror(sys_errno));
     printf("  ft_write: result=%d, errno=%d (%s)\n", ft_result, ft_errno, strerror(ft_errno));
     printf("  %s\n\n", (sys_result == ft_result && sys_errno == ft_errno) ? "\033[32mPASS\033[0m" : "\033[31mFAIL\033[0m");
+
+    printf("Test #7, Negative fd\n");
+    invalid_fd = -1;
+    
+    errno = 0;
+    sys_result = write(invalid_fd, "test", 4);
+    sys_errno = errno;
+    errno = 0;
+    ft_result = ft_write(invalid_fd, "test", 4);
+    ft_errno = errno;
+    
+    printf("  write:    result=%d, errno=%d (%s)\n", sys_result, sys_errno, strerror(sys_errno));
+    printf("  ft_write: result=%d, errno=%d (%s)\n", ft_result, ft_errno, strerror(ft_errno));
+    printf("  %s\n\n", (sys_result == ft_result && sys_errno == ft_errno) ? "\033[32mPASS\033[0m" : "\033[31mFAIL\033[0m");
 }
 
 void ft_read_test()

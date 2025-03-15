@@ -13,7 +13,9 @@ ft_read:                    ; ssize_t read(int fd, void *buf, size_t count);
 
     neg rax
     mov rdi, rax
+    sub rsp, 8
     call __errno_location wrt ..plt
+    add rsp, 8
     mov [rax], edi
     xor rax, rax
     dec rax 
@@ -22,7 +24,9 @@ ft_read:                    ; ssize_t read(int fd, void *buf, size_t count);
     ret
 
 .bad_address:
+    sub rsp, 8
     call __errno_location wrt ..plt
+    add rsp, 8
     mov qword [rax], 14
     xor rax, rax
     dec rax 

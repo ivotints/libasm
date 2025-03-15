@@ -15,7 +15,9 @@ ft_write:
 
     neg rax                             ; to get positive error code. -16 -> 16
     mov rdi, rax                        ; now we need to safe rax somewhere. push rdx or use rdi    
+    sub rsp, 8
     call __errno_location wrt ..plt     ; it will set rax to point on errno. in rax now pointer to errno
+    add rsp, 8
                                         ; plt is procedure linkage table. (to find adress of __errno_location in C lib) . We need plt because in compile time compiler do not know adress of that function
                                         ; wrt is WithRespectTo.
     mov [rax], rdi                      ; set error in errno
