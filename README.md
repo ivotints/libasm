@@ -21,4 +21,4 @@
 
 **Legend:**  
 ✅ - contain trash  
-❌ - safe before use
+❌ - save to stack before use
